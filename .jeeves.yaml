@@ -1,0 +1,53 @@
+Mygento:
+  Smtp:
+    entities:
+      Log:
+        readonly: true
+        columns:
+          id:
+            type: int
+            pk: true
+            identity: true
+            unsigned: true
+            comment: "Column ID"
+          subject:
+            type: varchar
+            nullable: true
+            comment: "Email Subject"
+          content:
+            type: text
+            nullable: true
+            comment: "Email Content"
+          status:
+            type: int
+            unsigned: false
+            comment: "Customer Group"
+            length: 6
+            nullable: false
+            source: 'Mygento\Smtp\Model\Source\Status'
+          error:
+            type: text
+            nullable: true
+            comment: "Email Error"
+          sender:
+            type: varchar
+            nullable: true
+            comment: "Email Sender"
+          recipient:
+            type: varchar
+            nullable: true
+            comment: "Email Recipient"
+          cc:
+            type: varchar
+            nullable: true
+            comment: "Email Cc"
+          bcc:
+            type: varchar
+            nullable: true
+            comment: "Email Bcc"
+          created_at:
+            type: timestamp
+            nullable: false
+            default: "CURRENT_TIMESTAMP"
+            comment: "Create time"
+            on_update: false

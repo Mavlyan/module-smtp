@@ -4,4 +4,44 @@
         <plugin name="mygento_smtp" type="Mygento\Smtp\Mail\Transport" />
     </type>
 
+    <!-- generated code -->
+    <preference for="Mygento\Smtp\Api\LogRepositoryInterface" type="Mygento\Smtp\Model\LogRepository"/>
+    <preference for="Mygento\Smtp\Api\Data\LogInterface" type="Mygento\Smtp\Model\Log"/>
+    <preference for="Mygento\Smtp\Api\Data\LogSearchResultsInterface" type="Mygento\Smtp\Model\LogSearchResults"/>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Mygento\Smtp\Api\Data\LogInterface" xsi:type="string">Mygento\Smtp\Api\LogRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Mygento\Smtp\Model\SearchCriteria\LogCollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Mygento\Smtp\Model\LogRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Mygento\Smtp\Model\SearchCriteria\LogCollectionProcessor</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="smtp_log_listing_data_source" xsi:type="string">Mygento\Smtp\Model\ResourceModel\Log\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mygento\Smtp\Model\ResourceModel\Log\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mygento_smtp_log</argument>
+            <argument name="eventPrefix" xsi:type="string">smtp_log_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">log_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Mygento\Smtp\Model\ResourceModel\Log</argument>
+        </arguments>
+    </type>
 </config>

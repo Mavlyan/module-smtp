@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mygento_Smtp::root" title="Smtp" translate="title" module="Mygento_Smtp" sortOrder="90" parent="Magento_Backend::stores" resource="Mygento_Smtp::root"/>
+        <add id="Mygento_Smtp::log" title="Smtp Log" translate="title" module="Mygento_Smtp" sortOrder="90" parent="Mygento_Smtp::root" action="smtp/log" resource="Mygento_Smtp::log"/>
+    </menu>
+</config>
